@@ -1,0 +1,5 @@
+
+User-agent:*
+Disallow:
+
+Sitemap: https://Masao-Someki.github.io/sitemap.xml
