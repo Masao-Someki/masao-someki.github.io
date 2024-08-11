@@ -3,8 +3,7 @@ home: true
 layout: BlogHome
 title: Masao's Home
 bgImage: /assets/images/tonarino.png
-heroImage: /assets/images/masao.png
-heroText: Masao Someki 
+heroText: Masao's Home
 heroFullScreen: false
 projects:
   - icon: pen-nib
@@ -12,7 +11,7 @@ projects:
     desc: List of my publications
     link: /publications/
 
-  - icon: books
+  - icon: book
     name: Projects
     desc: Detailed description of the book
     link: /projects/
@@ -24,7 +23,7 @@ projects:
 
   - icon: article
     name: Curriculum Vitae
-    link: https://link.to.your.friend
+    link: https://drive.google.com/file/d/1tSU66mO15LjeVboAXytvQtNlicjxNl7s/view?usp=sharing
 
   - icon: arrow-up-right-from-square
     name: Github

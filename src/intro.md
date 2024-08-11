@@ -3,44 +3,22 @@ icon: circle-info
 bgImage: /assets/images/tonarino.png
 ---
 
-# Self introduction
+### Self-Introduction
 
-## short bio
+#### Short Bio
 
-After I graduated my high school, I majourd in statistics in the School of Economics at Nagoya University.
-During the student years, I worked as an intern at [Human Dataware Lab](https://www.hdwlab.co.jp/) and had an part-time job at [Tarvo](https://tarvo.co.jp/).
-After I graduted the Nagoya University I joined the IBM Japan, and engaged in the system development for an insurance company.
-I expressed my profession in the field of generative AI.
+I majored in Statistics at the School of Economics, Nagoya University, following my high school graduation. During my undergraduate years, I interned at [Human Dataware Lab](https://www.hdwlab.co.jp/) and held a part-time position at [Tarvo](https://tarvo.co.jp/). After earning my degree from Nagoya University, I joined IBM Japan, where I was involved in system development for an insurance company. In particular, my pioneering work on generative AI, for which I served as technical lead, was widely reported in the news.
 
-For now, I am a master student at the Language Technologies Institute in School of Computer Science at Carnegie Mellon University.
-I joined the WAVLab and mentored by Prof. Shinji Watanabe, and doing my research on speech and language.
+Currently, I am a master's student at the Language Technologies Institute, School of Computer Science, Carnegie Mellon University. I am a member of the WAVLab, where I am mentored by Prof. Shinji Watanabe, and I am conducting research in the areas of speech and language processing.
 
+#### Research Interests
 
+**Accelerating Inference Without Compromising Accuracy**
 
-## Research Interests
+The recent advancements in neural network technologies have enabled the use of Self-Supervised Learning (SSL) models in the speech domain, significantly improving the accuracy of speech-related tasks, such as speech-to-text. However, these models typically contain a large number of parameters, which can slow down inference speed in speech processing systems. My research aims to develop new techniques that allow these large models to operate efficiently on resource-constrained environments, without compromising on accuracy or inference speed.
 
-**Speed up inference without losing accuracy**
+**[SLU] Speech-to-Text Understanding: Generating Structured Text from Speech**
 
-Recent development of neural network technologies enables us to use the Self-Supervised Learning (SSL) models in the speech field, to improve the accuracy of speech related tasks, such as speech to text.
-However, these models usually contains a lot of parameters, slowering the inference speed of the entire speech related systems.
-Here I'd like to develop a new technologies to enable these large-parameter models running on a small resource without losing its accuracy and inference speed.
+During my time at IBM Japan, I recognized the importance of generating structured text from conversations, especially in a streaming manner. This capability could have wide-ranging applications in business, such as generating meeting minutes, to-do lists, or summarizing key action points from discussions.
 
-
-**Generating the structured text directry from speech**
-
-Based on my experience of IBM Japan, I realized that generating structured text from conversation is pretty important.
-Especially if we could generate it in a streaming manner, we can expand the technique to our daily business works, such as generating the proceedings or todos, or it can generate a breef summary of the next steps based on the explanation from a senior employee.
-
-I think there are already several services like this by combining the Speech2text and Large Language Models, but I'm interested in whether we can develop a end-to-end streaming model to achieve this.
-
-
-(Priority is less than above)
-**Utilize what we say before**
-
-In concrete, I'm interested in whether machines can transcribe the following video.
-This video clip contains Japanese speech from a streaming of Todoroki-hajime.
-In my opinion, only talented and trained Japanese, who watched the streaming throughly, can transcribe this speech.
-I think machine can achieve this transcription only if it can learn how to utilize what she said before, and the text and images that we can see in the video.
-
-[轟はじめ - 8番出口実況より抜粋した動画](https://www.youtube.com/watch?v=MUTQQj4Q9ug)
-
+While there are existing services that combine Speech-to-Text and Large Language Models to achieve similar outcomes, I am interested in exploring the development of an end-to-end streaming model that can accomplish this task more efficiently and accurately.

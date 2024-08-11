@@ -16,10 +16,7 @@ tag:
 
 ## Abstract
 
-By combining the autoregressive (AR) and non-autoregressive (NAR) decoding, we achieved a partially autoregressive (PAR) decoding that can utilize the stregth of both.
-As result, we achieved at around 12-13 times speedup with little accuracy degradation.
-One of the merit of this PAR is that we don't have to train a new model, simply utilize the pre-trained AR model would achieve this speedup.
-I added this decoding algorithm in the ESPnet: [5769](https://github.com/espnet/espnet/pull/5769)
+By combining autoregressive (AR) and non-autoregressive (NAR) decoding, we developed a partially autoregressive (PAR) approach that leverages the strengths of both methods. This resulted in a 12-13x speedup with minimal accuracy degradation. A key advantage of PAR is that it doesn’t require training a new model; we can achieve this speedup using a pre-trained AR model. I've integrated this decoding algorithm into ESPnet: #[5769](https://github.com/espnet/espnet/pull/5769)
 
 
 
@@ -27,90 +24,71 @@ I added this decoding algorithm in the ESPnet: [5769](https://github.com/espnet/
 
 ### What is Autoregressive decoding?
 
-For the majour decoding process in speech to text task, we have the autoregressive (AR) way of decoding, which takes the former output to infer the next token.
+Autoregressive (AR) decoding is a common approach in speech-to-text tasks, where each token is predicted sequentially based on the previous output.
 
 ![Autoregressive decoding](./partially_autoregressive_inference/AR_explained.png)
 
-In this image we estimate the string `sea_cucumber`.
-For example, we compute the second `e` after we compute the first `s`, so that we could utilize the information that the first letter for this audio is `s`.
-This process could achieve good accuracy, but is also very slow in inference speed since we should wait for the latter characters until the former characters are computed.
+
+In the example above, we estimate the string sea_cucumber. For instance, we predict the second e only after predicting the first s, utilizing the information that the first letter of this audio is s. This method yields high accuracy but is slow because each token must wait for the previous ones to be computed.
 
 
 ### What is Non-Autoregressive decoding?
 
-AR has a shortage of slow inference.
-To address this problem, Non-Autoregressive decoding try to compute all characters at once.
+The main drawback of AR decoding is its slow inference speed. To address this, Non-Autoregressive (NAR) decoding attempts to predict all tokens simultaneously.
 
 ![Non-Autoregressive decoding](./partially_autoregressive_inference/NAR_explained.png)
 
-There are several architectures for the NAR decoding. I choosed to use the Mask-CTC here, which is one of the simplest NAR structure in my opinion.
-First, it use the CTC module as a NAR estimator to compute the whole characters.
-Since CTC predicts tokens for each frames without depends on other frames, it is considered as non-autoregressive decoding.
-However, since it does not take other frames into account, the accuracy drops compared to AR.
-So in the Mask-CTC, we detect tokens with lower confidence and replace them with the decoder trained in a Masked Language Model task.
+There are several architectures for NAR decoding. In my work, I chose to use Mask-CTC, one of the simpler NAR structures. Initially, the CTC module serves as a NAR estimator, predicting all characters at once. Since CTC predicts tokens for each frame independently, it qualifies as non-autoregressive decoding. However, this lack of dependency across frames leads to lower accuracy compared to AR. To improve this, Mask-CTC replaces low-confidence tokens with a decoder trained on a Masked Language Model task.
 
-This process is faster than AR, since all characters can be predicted in parallel, but has shortage of accuracy degradation.
-For example, we cannot modify the token length, even if the CTC output is longer or shorter than the actual string sequence.
+This process is faster than AR because it allows parallel prediction of characters, but it comes at the cost of some accuracy loss. For example, token length cannot be adjusted even if the CTC output is longer or shorter than the actual string sequence.
 
 
 
 ### What is Partially Autoregressive decoding we propose
 
-In our paper, we proposed to revise the low-confident tokens from CTC module, with AR.
-So that only a portion of the sequence can be predicted in AR manner, reducing the number of iteration of the AR process.
-This is why we call it partially autoregressive decoding.
+In our paper, we propose revising the low-confidence tokens from the CTC module using AR. This means that only part of the sequence is predicted in an AR manner, reducing the number of iterations required for AR processing. This is why we call it Partially Autoregressive (PAR) decoding.
 
 ![Partially Autoregressive decoding](./partially_autoregressive_inference/PAR_explained.png)
 
-By revising the low-confident tokens (marked as red characters) in parallel, the number of iterations for AR process can be greatly reduced.
-Note that if we try to revise the second or later part, each segment for the AR process contains the red characters.
-We can wait for the first part to be predicted, but it makes the inference slower.
-So in our paper we utilized the CTC output, even if it might contains wrong tokens.
-based on our experiments, there is no significant difference on accuracy when we employ CTC output directly.
+By revising the low-confidence tokens (marked in red) in parallel, the number of AR iterations can be significantly reduced. When revising the second or later parts, each segment for the AR process contains these low-confidence tokens. While we could wait for the first part to be predicted, doing so would slow down inference. Therefore, in our paper, we utilized the CTC output even if it might contain incorrect tokens. Our experiments showed no significant difference in accuracy when directly employing the CTC output.
+
+We computed the low-confidence tokens in parallel, reducing the number of AR iterations to the same as if there were only a single low-confidence token in the sequence. This parallelization of the AR process is the core technique that enables the fast and accurate inference presented in our paper.
 
 
 ## Experimental Result
 
 ### AR vs PAR
 
-For the Error, we employed the Word Error Rate (WER).
+For evaluating error, we used the Word Error Rate (WER).
 
 ![Table 3](./partially_autoregressive_inference/table-3.png)
 
-We can see that with the PAR process the inference speed becomes faster without sacrificing accuracy much.
-Note that this speedup comes from the parallelization of AR process.
-So if the audio is short, the speedup effect is not as effective as longer audio.
-Conversely, the speedup effect is superior in longer audio, as we observed 89.7 times speedup at maximum.
+The results show that PAR significantly speeds up inference without sacrificing much accuracy. While the effect is less pronounced with short audio, longer audio benefits greatly, with up to 89.7x speedup.
 
 
 ### Trade-off
 
-Here I created the figure on accuracy vs inference speed.
-I measured by gradually changing the beam size from 1 to 20.
+Here is a comparison of accuracy versus inference speed, measured by gradually changing the beam size from 1 to 20.
 
 ![Figure 4](./partially_autoregressive_inference/trade_off.png)
 
-Compared to AR, the line of PAR is located at the left on both Librispeech-100h and Librispeech-960h dataset, indicating that the improvement on the trade-off.
+Compared to AR, the PAR line is positioned to the left on both the Librispeech-100h and Librispeech-960h datasets, indicating an improved trade-off between speed and accuracy.
 
 ### NAR vs PAR
 
-Here are the results for the model trained and evaluated with Librispeech-100h dataset.
+Below are the results for the model trained and evaluated on the Librispeech-100h dataset.
 
 ![Table 4](./partially_autoregressive_inference/table-4.png)
 
-You can see that the inference speed is competitive as NAR, while the accuracy is as the same level as the AR.
+The results show that PAR is competitive with NAR in terms of inference speed while maintaining accuracy at the same level as AR.
 
 
 ## Limitation
 
 ### Accuracy
 
-As I mentioned in the PAR section, especially for the second or later segments the tokens inside the segment can be wrong. This might have bad effect on accuracy.
+As mentioned in the PAR section, tokens within the second or later segments can be incorrect, which may negatively impact accuracy.
 
 ### About the memory usage
 
-Due to the parallelization, the memory usage at once would increase.
-However, when refactoring the experimental code for the PR, I noticed that the memory issue was accually caused by the source-attention process where we need to compute the attention between the encoder output and the decoder input.
-For example if we had 20 batches then it copies the encoder output for 20 batches, which increases the memory usage...
-So I simply removed this redundant copy of tensor, and the issue fixed.
-It actually speedup inference more..
+Due to parallelization, memory usage increases. However, while refactoring the experimental code for the PR, I discovered that the memory issue was actually caused by the source-attention process, where the attention between the encoder output and decoder input was computed for each batch, unnecessarily copying the encoder output for each of the batches, thereby increasing memory usage. By removing this redundant tensor copy, the memory issue was resolved, and inference was further improved.

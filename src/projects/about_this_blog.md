@@ -7,13 +7,10 @@ tag:
   - vuejs
 ---
 
-# What I use to build this blog
+# What I Use to Build This Blog
 
-I'm using the [VuePress](https://vuepress.vuejs.org/) to build this page. For the web design, I'm using the [Vuepress-hope](https://theme-hope.vuejs.press/) in combination with Vuepress.
+I'm using [VuePress](https://vuepress.vuejs.org/) to build this blog, along with the [VuePress-Hope](https://theme-hope.vuejs.press/) theme for web design.
 
-Once we setup everything, all we need is to write a markdown, and the Vuepress-hope will automatically recognize tags and categories, and format the documents.
-Switching from English to Japanese is also done by Vuepress-hope.
-I think this is a pretty nice feature.
+Once everything is set up, all I need to do is write in Markdown, and VuePress-Hope automatically recognizes tags and categories, formatting the documents accordingly. It also seamlessly switches between English and Japanese, which I find to be a particularly useful feature.
 
-I usually write these blogs in Japanese, which is my mother tongue, and transcribe by my self, and revised by LLM such as ChatGPT.
-Well, I need to practice my English skill...
+I usually write these blog posts in Japanese, my native language, transcribe them myself, and then refine them with the help of language models like ChatGPT. Although I rely on these tools, I know I still need to practice my English skills!
