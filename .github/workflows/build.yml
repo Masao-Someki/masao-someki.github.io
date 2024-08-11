@@ -1,0 +1,50 @@
+name: Node.js CD
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Check tagged branch
+        run: |
+          BRANCHS=$(git branch --contains ${{ github.ref_name }})
+          set -- $BRANCHS
+          for BRANCH in $BRANCHS ; do
+            if [[ "$BRANCH" == "master" ]]; then
+              exit 0
+            fi
+          done
+          exit 1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.15.1'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm i
+        
+      - name: Build web pages
+        run: npm run docs:build
+
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: gh_page # The branch name where you want to push the assets
+          FOLDER: src/.vuepress/dist # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
