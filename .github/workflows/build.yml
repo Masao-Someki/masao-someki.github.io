@@ -1,9 +1,6 @@
 name: Node.js CD
 
-on:
-  push:
-    tags:
-      - 'v*'
+on: [push]
 
 jobs:
   build:
@@ -16,17 +13,6 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
-
-      - name: Check tagged branch
-        run: |
-          BRANCHS=$(git branch --contains ${{ github.ref_name }})
-          set -- $BRANCHS
-          for BRANCH in $BRANCHS ; do
-            if [[ "$BRANCH" == "master" ]]; then
-              exit 0
-            fi
-          done
-          exit 1
 
       - name: Use Node.js
         uses: actions/setup-node@v4
