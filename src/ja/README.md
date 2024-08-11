@@ -1,7 +1,7 @@
 ---
 home: true
 layout: BlogHome
-title: Masao's Home
+title: Masaoのぶろぐ
 bgImage: /assets/images/tonarino.png
 heroImage: /assets/images/masao.png
 heroText: Masao Someki 
@@ -9,18 +9,18 @@ heroFullScreen: false
 projects:
   - icon: pen-nib
     name: Publications
-    desc: List of my publications
-    link: /publications/
+    desc: 今まで書いたpaperです
+    link: /ja/publications/
 
   - icon: books
     name: Projects
-    desc: Detailed description of the book
-    link: /projects/
+    desc: 関わったProject
+    link: /ja/projects/
 
   - icon: hands
     name: Bio
     desc: About me
-    link: /intro.md
+    link: /ja/intro.md
 
   - icon: article
     name: Curriculum Vitae
@@ -28,14 +28,22 @@ projects:
 
   - icon: arrow-up-right-from-square
     name: Github
-    desc: My github repositories
+    desc: Githubレポジトリ
     link: https://github.com/Masao-Someki
 
   - icon: arrow-up-right-from-square
     name: Huggingface space
-    desc: Huggingface spaces I created
+    desc: Huggingface spacesです
     link: https://huggingface.co/ms180
 
 ---
 
+お借りしたもの
 
+◆ 使用したOSS
+
+- Vuepress（サイト全体）　Vuepressコミュニティの皆様より
+- Vuepress-hope（サイトテーマ）　Mr.Hope様より
+
+◆ 画像など
+- となりの吸血鬼さん（肉球とトップの背景）　甘党様より

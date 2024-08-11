@@ -11,6 +11,19 @@ export default defineUserConfig({
 
   theme,
 
+  locales: {
+    "/": {
+      lang: "en-US",
+      title: "Masao's Blog",
+      description: "A blog for me",
+    },
+    "/ja/": {
+      lang: "ja-JP",
+      title: "Masaoのブログ",
+      description: "ぶろぐ",
+    },
+  }
+
   // Enable it with pwa
   // shouldPrefetch: false,
 });

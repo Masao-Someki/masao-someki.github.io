@@ -14,8 +14,6 @@ export default hopeTheme({
 
   logo: "/favicon.png",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
-
   docsDir: "src",
 
   // navbar
@@ -25,21 +23,47 @@ export default hopeTheme({
 
   displayFooter: true,
 
-  blog: {
-    description: "Hobby programmer",
-    intro: "/intro.html",
-    medias: {
-      GoogleScholar: {
-        icon: "google-scholar",
-        link: "https://scholar.google.com/citations?user=_aVVkVsAAAAJ",
+  locales: {
+    "/": {
+      blog: {
+        intro: "/intro.html",
+        name: "Masao Someki's Blog",
+        avatar: "/assets/images/masao.png",
+        description : "Hi! I am a Master student @ Language Technology Institute, Carnegie Mellon University.",
+        medias: {
+          GoogleScholar: {
+            icon: "google-scholar",
+            link: "https://scholar.google.com/citations?user=_aVVkVsAAAAJ",
+          },
+          Facebook: "https://example.com",
+          GitHub: "https://github.com/Masao-Someki",
+          Gmail: "mailto:masao.someki@gmail.com",
+          Twitter: "https://example.com",
+          Whatsapp: "https://example.com",
+          Youtube: "https://example.com",
+        },
       },
-      Facebook: "https://example.com",
-      GitHub: "https://github.com/Masao-Someki",
-      Gmail: "mailto:masao.someki@gmail.com",
-      Twitter: "https://example.com",
-      Whatsapp: "https://example.com",
-      Youtube: "https://example.com",
     },
+    "/ja/": {
+      blog: {
+        intro: "/intro.html",
+        name: "Masaoのぶろぐ",
+        avatar: "/assets/images/masao.png",
+        description : "カーネギーメロン大学のコンピュータサイエンス学科、Language Technologies Instituteで研究しています。",
+        medias: {
+          GoogleScholar: {
+            icon: "google-scholar",
+            link: "https://scholar.google.com/citations?user=_aVVkVsAAAAJ",
+          },
+          Facebook: "https://example.com",
+          GitHub: "https://github.com/Masao-Someki",
+          Gmail: "mailto:masao.someki@gmail.com",
+          Twitter: "https://example.com",
+          Whatsapp: "https://example.com",
+          Youtube: "https://example.com",
+        },
+      },
+    }
   },
 
   // enable it to preview all changes in time
