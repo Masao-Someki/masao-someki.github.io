@@ -7,7 +7,7 @@ tag:
   - vuejs
 ---
 
-# このブログについて
+# VuePressとVuePress-Hope (サイトテーマ)
 
 このブログは[VuePress](https://vuepress.vuejs.org/)を使って開発しています。
 画面のデザインには[Vuepress-hope](https://theme-hope.vuejs.press/)を使っています。

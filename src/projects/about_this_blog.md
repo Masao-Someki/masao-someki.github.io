@@ -7,7 +7,7 @@ tag:
   - vuejs
 ---
 
-# What I Use to Build This Blog
+# VuePress and VuePress-Hope (theme)
 
 I'm using [VuePress](https://vuepress.vuejs.org/) to build this blog, along with the [VuePress-Hope](https://theme-hope.vuejs.press/) theme for web design.
 
