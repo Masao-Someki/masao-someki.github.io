@@ -11,11 +11,6 @@ projects:
     desc: List of my publications
     link: /publications/
 
-  - icon: book
-    name: Projects
-    desc: Detailed description of the book
-    link: /projects/
-
   - icon: hands
     name: Bio
     desc: About me
@@ -35,6 +30,10 @@ projects:
     desc: Huggingface spaces I created
     link: https://huggingface.co/ms180
 
+  - icon: book
+    name: Projects
+    desc: Other projects
+    link: /projects/
 ---
 
 

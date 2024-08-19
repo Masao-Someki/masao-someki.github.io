@@ -11,11 +11,6 @@ projects:
     desc: 今まで書いたpaperです
     link: /ja/publications/
 
-  - icon: book
-    name: Projects
-    desc: 関わったProject
-    link: /ja/projects/
-
   - icon: hands
     name: Bio
     desc: About me
@@ -35,6 +30,10 @@ projects:
     desc: Huggingface spacesです
     link: https://huggingface.co/ms180
 
+  - icon: book
+    name: Projects
+    desc: その他のProject
+    link: /ja/projects/
 ---
 
 お借りしたもの
