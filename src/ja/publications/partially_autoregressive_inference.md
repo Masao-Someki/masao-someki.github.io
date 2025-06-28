@@ -28,7 +28,7 @@ ESPnetに追加済みです。→ [5760](https://github.com/espnet/espnet/pull/5
 
 音声認識でメジャーなデコード処理として、前の文字列を推論してから次の文字を推論するAutoregressive(AR)な推論方法があります。
 
-![Autoregressive decoding](./partially_autoregressive_inference/AR_explained.png)
+![Autoregressive decoding](../../publications/partially_autoregressive_inference/AR_explained.png)
 
 ここでは、 `sea cucumber` という文字列を推定しています。
 例えば２文字目の `e` は、最初の `s` が推定されてから、「１文字目は `s` だ」という情報を使って推論を実施します。
@@ -39,7 +39,7 @@ ESPnetに追加済みです。→ [5760](https://github.com/espnet/espnet/pull/5
 ARでは、全体の文字列の推論を実施するのに時間がかかるという欠点がありました。
 そこで、すべての文字列を一気に推論してしまおうというのがNon-Autoregressiveな手法です。
 
-![Non-Autoregressive decoding](./partially_autoregressive_inference/NAR_explained.png)
+![Non-Autoregressive decoding](../../publications/partially_autoregressive_inference/NAR_explained.png)
 
 NARには様々な手法があり、それぞれに構造が異なるのですが、ここでは本研究で参考にした[Mask-CTC](https://arxiv.org/abs/2005.08700)という手法を表示しています。
 まず`CTC`モジュールで全体の文字列を一度に推論してから、間違っていそうな箇所をDecoderで修正します。
@@ -54,7 +54,7 @@ NARはARと比較して非常に高速ですが、ARとは違って推論するt
 そこで今回提案したのは、`CTC`で推論した中で、間違っていそうな箇所のみARで推論するというものです。
 一部だけARな手法でデコードするため、Partially Autoregressive (PAR) なデコードとしています。
 
-![Partially Autoregressive decoding](./partially_autoregressive_inference/PAR_explained.png)
+![Partially Autoregressive decoding](../../publications/partially_autoregressive_inference/PAR_explained.png)
 
 それぞれの間違っていそうな箇所（赤字箇所）を並列処理することで、実質的にARの繰り返し処理の回数を大幅に減らすことができます。
 赤字の推論のために、それ以前の文字列をsegmentとして並列で推論を実施します。
@@ -75,7 +75,7 @@ NARはARと比較して非常に高速ですが、ARとは違って推論するt
 精度はWord Error Rate (WER, Errorの列)、推論速度はReal Time Factor (RTFの列)に記載しています。
 どちらも数字が小さいほうが精度が良いことを表しています。
 
-![Table 3](./partially_autoregressive_inference/table-3.png)
+![Table 3](../../publications/partially_autoregressive_inference/table-3.png)
 
 PARでは、ほとんど精度を落とすことなく、推論速度を高速にできていることがわかります。
 なお、この高速化は並列処理によるものなので、推論する音声が短いと（ARでの繰り返し回数が少ないと）PARでの高速化効果は小さくなります。
@@ -88,7 +88,7 @@ PARでは、ほとんど精度を落とすことなく、推論速度を高速�
 それぞれ、beam searchのパラメータである beam sizeを1から20まで変化させて精度と速度を計測しています。
 (beam sizeが小さいと、精度は悪化するが早くなります。)
 
-![Figure 4](./partially_autoregressive_inference/trade_off.png)
+![Figure 4](../../publications/partially_autoregressive_inference/trade_off.png)
 
 ARと比較すると、PARの線はLibrispeechの100hデータセット、960hデータセットのどちらで学習した場合も左に寄っていて、Trade-offが改善していることがわかります。
 
@@ -97,7 +97,7 @@ ARと比較すると、PARの線はLibrispeechの100hデータセット、960h�
 
 以下はLibrispeech 100hデータセットで学習/評価した結果です。
 
-![Table 4](./partially_autoregressive_inference/table-4.png)
+![Table 4](../../publications/partially_autoregressive_inference/table-4.png)
 
 推論速度はNARに及んでいないですが、精度はNARを大きく上回っており、ARと同等レベルの精度が出ていることがわかります。
 

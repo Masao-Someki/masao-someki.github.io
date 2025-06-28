@@ -5,8 +5,4 @@
 
 This blog is generated using a language model (LLM) that transcribes my recorded audio in Japanese. Once I have accumulated a sufficient amount of data (approximately one year), I plan to publish a dataset that will include:
 
-- Speech recordings (10-20 minutes each)
-- Machine-generated transcriptions
-- Hand-corrected transcriptions
-- LLM-generated blog posts
-- Revised versions of the blog posts
+-> Well, I thought I would be able to do it, but I turned out to be much busier than expected and couldn’t get to it at all..

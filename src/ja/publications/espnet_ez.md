@@ -9,7 +9,6 @@ tag:
 
 # ESPnet-EZ: Python-Only ESPnet for Easy Fine-Tuning and Integration
 
-SLT2024で発表します。
 [arXiv](https://arxiv.org/abs/2409.09506v1)
 
 
@@ -56,14 +55,14 @@ yamlファイルで設定するものだけでなく、ユーザが自由にモ�
 ### コードを書く量について
 
 新しいデータセットに対応するコードを書いて学習するのに必要な行数の比較です
-![](./espnet_ez/code_lines.png)
+![](../../publications/espnet_ez/code_lines.png)
 
 ### ユーザからの意見
 
 実際に学生の方に意見を聞いてみました。
 左側はESPnetに対してESPnet-EZについての意見、右側はESPnet-EZに対してESPnetの意見です。
 
-![](./espnet_ez/user_feedback.png)
+![](../../publications/espnet_ez/user_feedback.png)
 
 
 ### Fine-tuningの結果比較
@@ -74,7 +73,7 @@ yamlファイルで設定するものだけでなく、ユーザが自由にモ�
 学習データには含まれていますが、LhotseやLoRAを用いてFine-tuneすることで若干の精度向上ができました。
 指標はWord Error Eate (WER) で、正解と文字起こし結果の一致率を[%]で表します。
 
-![](./espnet_ez/ASR_result.png)
+![](../../publications/espnet_ez/ASR_result.png)
 
 
 ## 裏話
